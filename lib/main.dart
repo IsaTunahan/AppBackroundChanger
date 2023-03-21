@@ -1,5 +1,6 @@
 import 'dart:math';
 	import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 	
 
 	void main() => runApp(MyApp()); //1- main fonksiyonu uygulamayı başlatır ve MyApp sınıfını çağırır.
@@ -22,6 +23,7 @@ import 'dart:math';
 	 class _MyAppState extends State<MyApp>{//3- _MyAppState sınıfı, üç farklı renk değişkeni oluşturur: 
 	                                        //_buttonColor, _backgroundColor ve _textColor. 
 	                                        //Bu renkler sırasıyla butonun arka plan rengi, arka plan rengi ve metin rengidir.
+  Color _appBarColor = Colors.green;
 	  Color _buttonColor = Colors.red;
 	  Color _backroundColor = Color.fromARGB(8, 122, 140, 57);
 	  Color _textColor = Colors.black;
@@ -68,7 +70,6 @@ import 'dart:math';
 	      color: _backroundColor,
 	      child: Center(//8 -Center widget'ı, butonu merkezlemek için kullanılır ve bir ElevatedButton widget'ı içerir.
 	
-
 	        child: ElevatedButton(
 	          
 	          onPressed: _changeColor,
