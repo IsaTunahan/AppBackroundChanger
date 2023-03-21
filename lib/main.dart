@@ -74,7 +74,26 @@ class _MyAppState extends State<MyApp> {
         child: Center(
             //8 -Center widget'ı, butonu merkezlemek için kullanılır ve bir ElevatedButton widget'ı içerir.
 
-            child: ElevatedButton(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.star, color: _appBarColor),
+                Text('Welcome to Backround Changer',
+                    style: GoogleFonts.ubuntu(
+                      textStyle: TextStyle(
+                        fontSize: 20,
+                        color: _buttonColor,
+                      ),
+                    )),
+                Icon(Icons.star, color: _appBarColor),
+              ],
+            ),
+            ElevatedButton(
               onPressed: _changeColor,
               child: Text("Change Color"),
               style: ElevatedButton.styleFrom(
@@ -85,7 +104,9 @@ class _MyAppState extends State<MyApp> {
                   backgroundColor: _buttonColor,
                   textStyle:
                       TextStyle(fontSize: 50, backgroundColor: _textColor)),
-            )),
+            ),
+          ],
+        )),
         //10- Herhangi bir değişiklik olduğunda, _changeColor fonksiyonu setState metodunu çağırarak arayüzün güncellenmesini sağlar.
         //11- Her tıklamada, _changeColor fonksiyonu rastgele renkleri oluşturur ve _buttonColor, _backgroundColor ve _textColor değişkenlerini günceller.
         //12- Her güncellemede, build fonksiyonu yeniden çağrılır ve arayüzün güncellenmiş hali oluşturulur.
