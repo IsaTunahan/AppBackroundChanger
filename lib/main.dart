@@ -50,6 +50,7 @@ class _MyAppState extends State<MyApp> {
             child: ElevatedButton(
               onPressed: _changeColor,
               child: Text('Change Color'),
+              style: ElevatedButton.styleFrom(foregroundColor: _textColor),
             ),
           ),
         ),
