@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,7 +51,14 @@ class _MyAppState extends State<MyApp> {
             child: ElevatedButton(
               onPressed: _changeColor,
               child: Text('Change Color'),
-              style: ElevatedButton.styleFrom(foregroundColor: _textColor),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: _textColor,
+                backgroundColor: _buttonColor,
+                textStyle: TextStyle(
+                  fontSize: 50,
+                  backgroundColor: _backroundColor,
+                ),
+              ),
             ),
           ),
         ),
