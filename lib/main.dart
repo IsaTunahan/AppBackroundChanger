@@ -1,21 +1,39 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-void main() => runApp(MyApp()); 
-  
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
-Color _textColor = Colors.green;
-Color _buttonColor = Colors.red;
-Color _backroundColor = Colors.white;
-
-
+  Color _textColor = Colors.green;
+  Color _buttonColor = Colors.red;
+  Color _backroundColor = Colors.white;
+  void _changeColor() {
+    setState(() {
+      _textColor = Color.fromRGBO(
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256),
+        1,
+      );
+      _buttonColor = Color.fromRGBO(
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256),
+        1,
+      );
+      _backroundColor = Color.fromRGBO(
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256),
+        1,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
