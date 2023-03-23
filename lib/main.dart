@@ -48,17 +48,42 @@ class _MyAppState extends State<MyApp> {
         body: Container(
           color: _backroundColor,
           child: Center(
-            child: ElevatedButton(
-              onPressed: _changeColor,
-              child: Text('Change Color'),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: _textColor,
-                backgroundColor: _buttonColor,
-                textStyle: TextStyle(
-                  fontSize: 50,
-                  backgroundColor: _backroundColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.stars,
+                    ),
+                    Text(
+                      'Welcome to Backround Changer',
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(fontSize: 20),
+                        color: _buttonColor,
+                      ),
+                    ),
+                    Icon(
+                      Icons.stars,
+                    ),
+                  ],
                 ),
-              ),
+                ElevatedButton(
+                  onPressed: _changeColor,
+                  child: Text('Change Color'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: _textColor,
+                    backgroundColor: _buttonColor,
+                    textStyle: TextStyle(
+                      fontSize: 50,
+                      backgroundColor: _backroundColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
