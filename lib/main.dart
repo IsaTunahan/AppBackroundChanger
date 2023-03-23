@@ -13,6 +13,7 @@ class _MyAppState extends State<MyApp> {
   Color _textColor = Colors.green;
   Color _buttonColor = Colors.red;
   Color _backroundColor = Colors.white;
+  Color _appBarColor = Colors.green;
   void _changeColor() {
     setState(() {
       _textColor = Color.fromRGBO(
@@ -33,6 +34,12 @@ class _MyAppState extends State<MyApp> {
         Random().nextInt(256),
         1,
       );
+      _appBarColor = Color.fromRGBO(
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256),
+        1,
+      );
     });
   }
 
@@ -44,6 +51,7 @@ class _MyAppState extends State<MyApp> {
           title: Text(
             "Backround Change Color",
           ),
+          backgroundColor: _appBarColor,
         ),
         body: Container(
           color: _backroundColor,
@@ -57,7 +65,7 @@ class _MyAppState extends State<MyApp> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.stars,
+                      Icons.stars,color: _textColor,
                     ),
                     Text(
                       'Welcome to Backround Changer',
@@ -67,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     Icon(
-                      Icons.stars,
+                      Icons.stars,color: _textColor,
                     ),
                   ],
                 ),
@@ -79,7 +87,8 @@ class _MyAppState extends State<MyApp> {
                     backgroundColor: _buttonColor,
                     textStyle: TextStyle(
                       fontSize: 50,
-                      backgroundColor: _backroundColor,
+                      backgroundColor: 
+                      _appBarColor,
                     ),
                   ),
                 ),
