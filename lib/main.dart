@@ -37,6 +37,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Backround Change Color",
+          ),
+        ),
+        body: Container(
+          color: _backroundColor,
+          child: Center(
+            child: ElevatedButton(
+              onPressed: _changeColor,
+              child: Text('Change Color'),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
