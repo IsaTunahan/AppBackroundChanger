@@ -1,117 +1,187 @@
-import 'dart:math';
+import 'package:backround_changer/bottom_nav_bar.dart';
+import 'package:backround_changer/change_color.dart';
+import 'package:backround_changer/hot_or_cold.dart';
+import 'package:backround_changer/stack_deneme.dart';
+import 'package:backround_changer/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(
-    MyApp()); //1- main fonksiyonu uygulamayı başlatır ve MyApp sınıfını çağırır.
-
-class MyApp extends StatefulWidget {
-  //2- MyApp sınıfı, StatefulWidget sınıfından türetilir ve _MyAppState sınıfını çağırır.
-  //Bu sınıf, uygulama durumunun yönetilmesi ve arayüzün güncellenmesi için gerekli kodları içerir.
-
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
-  //3- _MyAppState sınıfı, üç farklı renk değişkeni oluşturur:
-  //_buttonColor, _backgroundColor ve _textColor.
-  //Bu renkler sırasıyla butonun arka plan rengi, arka plan rengi ve metin rengidir.
-  Color _appBarColor = Colors.green;
-  Color _buttonColor = Colors.red;
-  Color _backroundColor = Colors.white;
-  Color _textColor = Colors.orange;
-  void _changeColor() {
-    //4- _changeColor fonksiyonu, yeni bir rastgele renk oluşturmak için Random() sınıfını kullanır.
-    //Bu fonksiyon, _buttonColor, _backgroundColor ve _textColor değişkenlerini değiştirir.
-    setState(() {
-      _appBarColor = Color.fromRGBO(
-        Random().nextInt(256),
-        Random().nextInt(256),
-        Random().nextInt(256),
-        1,
-      );
-
-      _textColor = Color.fromRGBO(
-        Random().nextInt(256),
-        Random().nextInt(256),
-        Random().nextInt(256),
-        1,
-      );
-      _buttonColor = Color.fromRGBO(
-        Random().nextInt(256),
-        Random().nextInt(256),
-        Random().nextInt(256),
-        1,
-      );
-      _backroundColor = Color.fromRGBO(
-        Random().nextInt(256),
-        Random().nextInt(256),
-        Random().nextInt(256),
-        1,
-      );
-    });
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Change Color',
+      // home: myHomePage(),
+      initialRoute: '/',
+      routes: {
+        "/": (context) => myHomePage(),
+        '/settings': (context) => MyApps(),
+      },
+    );
   }
+}
+
+class myHomePage extends StatefulWidget {
+  const myHomePage({super.key});
+
+  @override
+  State<myHomePage> createState() => _myHomePageState();
+}
+
+class _myHomePageState extends State<myHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    //List<Color> colors=[Colors.grey.shade900,Colors.grey.shade500,Colors.white];
+    return WillPopScope(
+      onWillPop: () async {
+        print('pop edecek');
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Change Color App'),
+          backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  print('Settings');
+                  Navigator.of(context).pushNamed('/settings');
+                },
+                tooltip: 'Search',
+                icon: const Icon(
+                  Icons.settings_sharp,
+                  size: 30,
+                ))
+          ],
+        ),
+        bottomNavigationBar: bottomNavBar(),
+        body: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.red,
+              width: 5,
+            ),
+          ),
+          child: Column(
+            children: const [
+              ChangeColor(),
+              hotOrCold(),
+              stackDeneme(),
+              // Image(
+              //   image: AssetImage('images/icon_flutter.png'),
+              //   width: 200,
+              //   height: 200,
+              //   fit: BoxFit.cover,
+              // ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //5- Build fonksiyonu, arayüzü oluşturmak için kullanılır.
-    //Bu fonksiyon, MaterialApp widget'ı ile başlar ve Scaffold widget'ıyla devam eder.
-
-    return MaterialApp(
-        home: Scaffold(
-      //6- Scaffold widget'ı, uygulama çerçevesini oluşturur ve bir AppBar widget'ı ile birlikte görüntülenir.
-      //AppBar widget'ı, uygulama başlığını içerir.
+    return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Backround Color Changer',
-        ),
-        backgroundColor: _appBarColor,
+        title: Text('Settings'),
+        backgroundColor: Colors.black,
       ),
       body: Container(
-        //7-  Container widget'ı, uygulama arka plan rengini temsil eder ve _backroundColor değişkenine bağlanır.
-        color: _backroundColor,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white,
+            width: 5,
+          ),
+          color: Colors.black,
+        ),
         child: Center(
-            //8 -Center widget'ı, butonu merkezlemek için kullanılır ve bir ElevatedButton widget'ı içerir.
-
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.star, color: _appBarColor),
-                Text('Welcome to Backround Changer',
-                    style: GoogleFonts.ubuntu(
-                      textStyle: TextStyle(
-                        fontSize: 20,
-                        color: _buttonColor,
-                      ),
-                    )),
-                Icon(Icons.star, color: _appBarColor),
-              ],
+          child: Container(
+            decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.white,
+              width: 2,
             ),
-            ElevatedButton(
-              onPressed: _changeColor,
-              child: Text("Change Color"),
-              style: ElevatedButton.styleFrom(
-                  //9- ElevatedButton widget'ı, kullanıcının tıklamasını yakalamak için bir
-                  //onPressed özelliği içerir ve metin ve stil özellikleri içerir.
-                  //Stil özellikleri, _buttonColor ve _textColor değişkenlerine bağlanır.
-                  foregroundColor: _appBarColor,
-                  backgroundColor: _buttonColor,
-                  textStyle:
-                      TextStyle(fontSize: 50, backgroundColor: _textColor)),
+          ),
+            child: Text(
+              style: TextStyle(color: Colors.white),
+              'Welcome to Settindgs Page',
             ),
-          ],
-        )),
-        //10- Herhangi bir değişiklik olduğunda, _changeColor fonksiyonu setState metodunu çağırarak arayüzün güncellenmesini sağlar.
-        //11- Her tıklamada, _changeColor fonksiyonu rastgele renkleri oluşturur ve _buttonColor, _backgroundColor ve _textColor değişkenlerini günceller.
-        //12- Her güncellemede, build fonksiyonu yeniden çağrılır ve arayüzün güncellenmiş hali oluşturulur.
+          ),
+        ),
       ),
-    ));
+    );
+  }
+}
+class MyApps extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+        ),
+      ),
+      home: LoginPage(),
+    );
   }
 }
 
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+      
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Hoşgeldiniz!",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 32),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.login),
+              label: Text("Google ile Giriş Yap"),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.login),
+              label: Text("Apple ile Giriş Yap"),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.login),
+              label: Text("Facebook ile Giriş Yap"),
+            ),
+            SizedBox(height: 16),
+            TextButton(
+              onPressed: () {},
+              child: Text("E-posta ile Üye Ol"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
